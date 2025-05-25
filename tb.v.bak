@@ -22,7 +22,7 @@ module tb();
 
     // Memória de testes
     reg [9:0] memoria [0:255]; // xx_xxxxxxxx = 10 bits
-    integer i;
+    integer i, num_linhas;
 
     initial begin
         // Lê o arquivo (modifique o nome do arquivo conforme necessário)
@@ -36,8 +36,7 @@ module tb();
         rst_n = 1;
 
         // Processamento das linhas do arquivo
-        i = 0;
-        while (1) begin
+        for (i = 0; i < 256; i = i + 1) begin
             // Verifica se ainda há instruções válidas (pode parar ao encontrar valor indefinido)
             if (^memoria[i] === 1'bx) begin
                 $display("Fim da memória em linha %0d", i);
@@ -54,7 +53,6 @@ module tb();
                 $display("=== OK na linha %0d: acrescer=%b, decrecer=%b, saida=%d",
                           i, acrescer, decrecer, saida);
             end
-            i = i + 1;
         end
 
         $finish;

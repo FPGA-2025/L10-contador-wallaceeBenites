@@ -12,7 +12,7 @@ module Contador (
 always @(posedge clk or negedge rst_n) begin
     if (!rst_n) begin
         
-        saida <= 8'b0;
+        saida <= 8'd106;
     end else begin
         
         case ({acrescer, decrecer})
